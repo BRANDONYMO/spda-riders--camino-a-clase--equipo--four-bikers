@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SPDA Riders: Camino a Clase  Equipo: FourBikers"
-run/main_scene="res://nivel_1.tscn"
+run/main_scene="uid://d3yuju5hipeca"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

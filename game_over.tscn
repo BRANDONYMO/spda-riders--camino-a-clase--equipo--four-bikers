@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjior6lxh3qwr"]
+[gd_scene format=3 uid="uid://bjior6lxh3qwr"]
 
-[ext_resource type="Script" path="res://game_over.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://images/fondo_gameover.jpg" id="2_imagen"]
+[ext_resource type="Script" uid="uid://bp35061b3ckb2" path="res://game_over.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cux45n6gpoy7n" path="res://images/fondo_gameover.jpg" id="2_imagen"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1847125637]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1680593304]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_vertical = 2
 texture = ExtResource("2_imagen")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=435389907]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -37,13 +37,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Reintentar" type="Button" parent="VBoxContainer"]
+[node name="Reintentar" type="Button" parent="VBoxContainer" unique_id=1796140175]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "reintentar"
 
-[node name="Regresaralmenu" type="Button" parent="VBoxContainer"]
+[node name="Regresaralmenu" type="Button" parent="VBoxContainer" unique_id=744804621]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://pk4akrrn1k65"]
+
+[ext_resource type="Script" uid="uid://cjx02k5mf250e" path="res://nivel_completado.gd" id="1_ng0du"]
+
+[node name="Control" type="Control" unique_id=1866563723]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ng0du")

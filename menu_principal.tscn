@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://d1q6847qagymd"]
+
+[ext_resource type="Script" uid="uid://decf75rxej46a" path="res://menu_principal.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://hmjyreb63nxf" path="res://images/fondo_menu_principal.jpg" id="2_imagen"]
+
+[node name="Control" type="Control" unique_id=1856435777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1767224967]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_imagen")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=743443535]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -120.0
+offset_right = -100.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="BtnNivel1" type="Button" parent="VBoxContainer" unique_id=1827911764]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nivel 1"
+
+[node name="BtnNivel2" type="Button" parent="VBoxContainer" unique_id=7235428]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nivel 2"
+
+[node name="BtnNivel3" type="Button" parent="VBoxContainer" unique_id=1379567548]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nivel 3"
+
+[node name="BtnSalir" type="Button" parent="VBoxContainer" unique_id=223371256]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Salir"
+
+[connection signal="pressed" from="VBoxContainer/BtnNivel1" to="." method="_on_btn_nivel_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnNivel2" to="." method="_on_btn_nivel_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnNivel3" to="." method="_on_btn_nivel_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnSalir" to="." method="_on_btn_salir_pressed"]

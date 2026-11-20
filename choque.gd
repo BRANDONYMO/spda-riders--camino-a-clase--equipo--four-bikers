@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	# Creamos una etiqueta temporal por código para mostrar cuántos intentos quedan
+	# Creamos una etiqueta temporal para mostrar cuántos intentos quedan
 	if get_tree().has_meta("vidas_guardadas"):
 		var vidas_restantes = get_tree().get_meta("vidas_guardadas")
 		var label_intentos = Label.new()
@@ -14,9 +14,10 @@ func _ready():
 		add_child(label_intentos)
 
 func _on_reintentar_pressed():
-	get_tree().change_scene_to_file("res://nivel_1.tscn")
+	var nivel_a_cargar = get_tree().get_meta("nivel_actual", "res://nivel_1.tscn")
+	get_tree().change_scene_to_file(nivel_a_cargar)
 
 func _on_regresaralmenu_pressed():
 	get_tree().set_meta("vidas_guardadas", 3)
 	get_tree().set_meta("monedas_guardadas", 0)
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://menu_principal.tscn")
