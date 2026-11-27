@@ -24,11 +24,16 @@ var vidas = 3
 var tiene_turbo = false
 var tiempo_turbo = 0.0
 
+# --- AUDIO ---
+var sfx_moto = AudioStreamPlayer.new()
+var sfx_moto_normal = AudioStreamPlayer.new()
+var sfx_moneda = AudioStreamPlayer.new()
+
 # -------------------------------------------------
 # --- VARIABLES DE META Y DISTANCIA ---
 # -------------------------------------------------
 var distancia_recorrida = 0.0
-var distancia_meta = 60000.0 
+var distancia_meta = 28000.0 
 var senal_utvm_creada = false
 var recta_final_creada = false
 var nodo_utvm_ref = null
@@ -103,6 +108,19 @@ func _ready():
 	preparar_frames_moto()
 	actualizar_recorte_moto()
 	crear_hud_completo()
+	configurar_audio()
+
+func configurar_audio():
+	sfx_moto.stream = load("res://audio/motocontinuo.mp3")
+	sfx_moto.volume_db = -6.0
+	add_child(sfx_moto)
+	
+	sfx_moto_normal.stream = load("res://audio/motonormal.mp3")
+	sfx_moto_normal.volume_db = -8.0
+	add_child(sfx_moto_normal)
+	
+	sfx_moneda.stream = load("res://audio/monedarecolectada.mp3")
+	add_child(sfx_moneda)
 
 func preparar_frames_moto():
 	if not sprite or not sprite.texture:
@@ -254,6 +272,10 @@ func crear_hud_completo():
 func _process(delta):
 	# Si ya terminó y quedó estacionado frente a la puerta UTVM
 	if nivel_terminado:
+		if sfx_moto.playing:
+			sfx_moto.stop()
+		if sfx_moto_normal.playing:
+			sfx_moto_normal.stop()
 		frame_moto = 0
 		actualizar_recorte_moto()
 		return
@@ -270,6 +292,10 @@ func _process(delta):
 				actualizar_recorte_moto()
 		else:
 			nivel_terminado = true
+			if sfx_moto.playing:
+				sfx_moto.stop()
+			if sfx_moto_normal.playing:
+				sfx_moto_normal.stop()
 			frame_moto = 0
 			actualizar_recorte_moto()
 			finalizar_nivel_utvm()
@@ -281,12 +307,14 @@ func _process(delta):
 		tiempo_turbo = 3.0
 		tiene_turbo = false
 		label_turbo_estado.text = ": ¡TURBO ACTIVO!"
+		sfx_moto.play()
 		
 	if tiempo_turbo > 0:
 		tiempo_turbo -= delta
 		velocidad_base = 1300
 		if tiempo_turbo <= 0:
 			label_turbo_estado.text = ": SIN TURBO"
+			sfx_moto.stop()
 
 	var velocidad = 0
 	
@@ -308,6 +336,13 @@ func _process(delta):
 	else:
 		velocidad = 0
 		esta_corriendo = false
+
+	if velocidad > 0 and tiempo_turbo <= 0:
+		if not sfx_moto_normal.playing:
+			sfx_moto_normal.play()
+	else:
+		if sfx_moto_normal.playing:
+			sfx_moto_normal.stop()
 
 	if esta_corriendo:
 		timer_moto += delta
@@ -612,6 +647,7 @@ func crear_elemento_aleatorio():
 			if body == self:
 				if es_coleccionable:
 					if "moneda" in ruta_txt:
+						sfx_moneda.play()
 						monedas += 1
 						get_tree().set_meta("monedas_guardadas", monedas)
 						label_monedas_texto.text = ": " + str(monedas)

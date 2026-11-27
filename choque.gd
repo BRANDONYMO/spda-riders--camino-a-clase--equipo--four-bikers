@@ -3,6 +3,12 @@ extends Control
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+	# Sonido de choque
+	var sfx_choque = AudioStreamPlayer.new()
+	sfx_choque.stream = load("res://audio/choque.mp3")
+	add_child(sfx_choque)
+	sfx_choque.play()
+	
 	# Creamos una etiqueta temporal para mostrar cuántos intentos quedan
 	if get_tree().has_meta("vidas_guardadas"):
 		var vidas_restantes = get_tree().get_meta("vidas_guardadas")

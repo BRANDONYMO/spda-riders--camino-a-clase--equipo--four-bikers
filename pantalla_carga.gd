@@ -10,6 +10,14 @@ var progreso = 0.0
 var siguiente_escena = "res://menu_principal.tscn"
 
 func _ready():
+	# Música de fondo en la pantalla de carga
+	var audio_carga = AudioStreamPlayer.new()
+	audio_carga.stream = load("res://audio/fondolobby.mp3")
+	audio_carga.volume_db = -6.0
+	audio_carga.finished.connect(func(): audio_carga.play())
+	add_child(audio_carga)
+	audio_carga.play()
+
 	# 1. Configuramos el fondo a pantalla completa (1152x648) con nuestra imagen chida
 	fondo.texture = load("res://images/07_Fondos/fondo_carga.png")
 	fondo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
